@@ -6,17 +6,17 @@ It's a very tiny development environment with `React.JS` and `Webpack`.
 
 # Quick Start
 
-1. create a dir by cloning this repository
+1. create a directory by cloning this repository
 ```
 git clone https://github.com/HeskeyBaozi/myRWKit.git Kit
 ```
 
-2. enter the dir
+2. navigate to the directory
 ```
 cd Kit
 ```
 
-3. install the dependenci
+3. install dependencies
 ```
 npm install
 ```
