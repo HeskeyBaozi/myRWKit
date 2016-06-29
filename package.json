@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --port 5555 --inline --hot",
     "build": "webpack"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/HeskeyBaozi/myRWKit.git"
   },
@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "babel": "^6.5.2",
+    "bootstrap": "^3.3.6",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
