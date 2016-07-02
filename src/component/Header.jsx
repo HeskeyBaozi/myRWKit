@@ -1,15 +1,17 @@
 import React from 'react';
+import todoItem from '../todoItem.jsx';
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
+        this.state = new todoItem('GGB', 'des', false, 2);
     }
 
     render() {
         return (<div className="bg-success">
             <header className="container">
                 <h1 className="text-primary text-center">ToDos</h1>
-                <form className="row">
+                <form className="row" onSubmit={this.props.handler.addTask.bind(this)}>
                     <div className="col-sm-8 form-group">
                         <label className="sr-only" htmlFor="addTaskInput">
                             Add Task
@@ -17,14 +19,15 @@ class Header extends React.Component {
                         <input type="text"
                                id="addTaskInput"
                                className="form-control"
-                               placeholder="What do you want to do?"/>
+                               placeholder="What do you want to do?"
+                               value={this.state.title}/>
                     </div>
                     <div className="col-sm-2 form-group">
-                        <select className="form-control">
-                            <option value="very-important">Very Important</option>
-                            <option value="important">Important</option>
-                            <option value="normal" selected>Normal</option>
-                            <option value="unimportant">Unimportant</option>
+                        <select className="form-control" value={this.state.importance}>
+                            <option value={3}>Very Important</option>
+                            <option value={2}>Important</option>
+                            <option value={1}>Normal</option>
+                            <option value={0}>Unimportant</option>
                         </select>
                     </div>
                     <div className="col-sm-2 form-group">

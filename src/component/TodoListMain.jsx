@@ -1,28 +1,26 @@
 import React from 'react';
+import TodoItem from './TodoItem.jsx';
 
 class TodoListMain extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            todoDataArray: this.props.todoData
+        };
     }
 
     render() {
-        return (<main className="container">
-            <div className="row">
-                <div className="col-sm-3">
-                    <input type="checkbox"
-                           className="checkbox form-control"/>
-                </div>
-                <div className="col-sm-9">
-                    <div className="row">
-                        <h2>Do Something..</h2>
-                    </div>
-                    <div className="row">
-                        <p>description..............</p>
-                    </div>
-                </div>
-            </div>
+        let todoDataJSXArray = this.state.todoDataArray.map(function (val, index, array) {
+            return <TodoItem todoItemObj={val}/>
+        });
+        return (<main className="container flex-container">
+            {todoDataJSXArray}
         </main>);
     }
 }
+
+TodoListMain.propTypes = {
+    todoData: React.PropTypes.array.isRequired
+};
 
 export default TodoListMain;
