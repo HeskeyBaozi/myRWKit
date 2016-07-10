@@ -7,27 +7,34 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoDataArray: this.props.todoData
+            visibilityFilter: this.props.todoData.visibilityFilter,
+            todos: this.props.todoData.todos
+        };
+        this.handlers = {
+            addTask: (newTodoItemObj)=> {
+                this.setState({
+                    todos: [...this.state.todos, newTodoItemObj]
+                });
+            },
+            changeFilter: (newFilter)=> {
+                this.setState({
+                    visibilityFilter: newFilter
+                });
+            }
         };
     }
 
     render() {
-        let handlers = {
-            addTask: function (event) {
-                event.preventDefault();
-                alert('addTask!!!' + this.state.title);
-            }
-        };
         return (<div>
-            <Header handler={handlers}/>
-            <TodoListMain todoData={this.state.todoDataArray}/>
-            <Footer todoData={this.state.todoDataArray}/>
+            <Header handler={this.handlers}/>
+            <TodoListMain todoData={this.state}/>
+            <Footer visibilityFilter={this.state.visibilityFilter} handler={this.handlers}/>
         </div>);
     }
 }
 
 Main.propTypes = {
-    todoData: React.PropTypes.array.isRequired
+    todoData: React.PropTypes.object.isRequired
 };
 
 export default Main;

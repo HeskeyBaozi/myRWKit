@@ -5,17 +5,31 @@ class Footer extends React.Component {
         super(props);
     }
 
+    handleClick(e) {
+        e.preventDefault();
+        this.props.handler.changeFilter(e.target.id);
+    }
+
     render() {
         return (<footer className="container">
-            <div className="col-sm-1">
-                <label htmlFor="selectAll">Select All</label>
-                <input type="checkbox" id="selectAll"/>
-            </div>
-            <div className="col-sm-11">
-                <p className="text-center">
-                    Hello,
-                </p>
-            </div>
+            <ul className="list-inline text-center">
+                <li >
+                    <a href="#"
+                       onClick={this.handleClick.bind(this)}
+                       id="SHOW_ALL">All</a>
+                </li>
+                <li >
+                    <a href="#"
+                       onClick={this.handleClick.bind(this)}
+                       id="SHOW_ACTIVE">Active</a>
+                </li>
+                <li >
+                    <a href="#"
+                       onClick={this.handleClick.bind(this)}
+                       id="SHOW_COMPLETED">Completed</a>
+                </li>
+            </ul>
+
         </footer>);
     }
 }

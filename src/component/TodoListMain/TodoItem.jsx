@@ -7,9 +7,11 @@ class TodoItem extends React.Component {
 
     render() {
         return (<div className="flexBox">
-            <h1>
-                title: {this.props.todoItemObj.title} {this.props.todoItemObj.isCompleted ? '完成!!' : '未完成'}
-            </h1>
+            <h3 className={this.props.todoItemObj.isCompleted?"text-success":"text-danger"}>
+                <strong>
+                    {this.props.todoItemObj.title} {this.props.todoItemObj.isCompleted ? 'Completed' : 'Active'}
+                </strong>
+            </h3>
             <p>des: {this.props.todoItemObj.description}</p>
             <p>importance: {this.props.todoItemObj.importance}</p>
         </div>);
