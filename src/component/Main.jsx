@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Header.jsx';
-import TodoListMain from './TodoListMain.jsx';
-import Footer from './Footer.jsx';
+import Header from './Header/Header.jsx';
+import TodoListMain from './TodoListMain/TodoListMain.jsx';
+import Footer from './Footer/Footer.jsx';
 
 class Main extends React.Component {
     constructor(props) {
