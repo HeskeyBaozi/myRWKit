@@ -17,8 +17,8 @@ class TodoItem extends React.Component {
         </div>);
     }
 }
-
-class A extends React.Component{
+/**
+ * class A extends React.Component{
     constructor(props){
         super(props);
     }
@@ -29,6 +29,9 @@ class A extends React.Component{
         </div>);
     }
 }
+
+ * 
+ */
 
 TodoItem.propTypes = {
     todoItemObj: React.PropTypes.object.isRequired
