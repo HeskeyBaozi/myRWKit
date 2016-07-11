@@ -21,7 +21,7 @@ class Main extends React.Component {
                     visibilityFilter: newFilter
                 });
             }
-        };
+        }
     }
 
     render() {
@@ -32,6 +32,7 @@ class Main extends React.Component {
         </div>);
     }
 }
+
 
 Main.propTypes = {
     todoData: React.PropTypes.object.isRequired

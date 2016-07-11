@@ -7,7 +7,7 @@ class TodoListMain extends React.Component {
     }
 
     render() {
-        let todoDataJSXArray = this.props.todoData.todos.filter(function (val, index, array) {
+        let todoDataJSXArray = this.props.todoData.todos.filter((val, index, array)=> {
             switch (this.props.todoData.visibilityFilter) {
                 case 'SHOW_ALL':
                     return true;
@@ -16,12 +16,9 @@ class TodoListMain extends React.Component {
                 case 'SHOW_COMPLETED':
                     return val.isCompleted ? true : false;
                 default:
-                    throw Errow('No case');
-
+                    throw Error('No case');
             }
-        }.bind(this)).map(function (val, index, array) {
-            return <TodoItem todoItemObj={val} key={index.toString()+'hash'}/>
-        });
+        }).map((val, index, array)=><TodoItem todoItemObj={val} key={index.toString()+'hash'}/>);
         return (<main className="container flex-container">
             {todoDataJSXArray}
         </main>);
