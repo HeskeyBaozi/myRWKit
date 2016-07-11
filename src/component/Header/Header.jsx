@@ -1,5 +1,5 @@
 import React from 'react';
-import todoItem from '../../todoItem.jsx';
+
 
 class Header extends React.Component {
     constructor(props) {
