@@ -2,9 +2,7 @@ import {combineReducers} from 'redux';
 import {actionTypes, filterTypes} from './actions.jsx';
 
 function todos(todosArrayState, action) {
-    if (typeof todosArrayState === 'undefined') {
-        todosArrayState = [];
-    }
+    todosArrayState = todosArrayState || [];
     switch (action.type) {
         case actionTypes.ADD_TODO:
             return [...todosArrayState, action.todoItemObj];
@@ -20,9 +18,7 @@ function todos(todosArrayState, action) {
 }
 
 function visibilityFilter(filterState, action) {
-    if (typeof filterState === 'undefined') {
-        filterState = filterTypes.SHOW_ALL;
-    }
+    filterState = filterState || filterTypes.SHOW_ALL;
     switch (action.type) {
         case actionTypes.SET_VISIBILITY_FILTER:
             return action.newFilter;

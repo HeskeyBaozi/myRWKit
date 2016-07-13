@@ -8,7 +8,6 @@ class Footer extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
-        console.log(this.props);
         this.props.changeFilter(e.target.id);
     }
 

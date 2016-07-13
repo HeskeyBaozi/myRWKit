@@ -7,7 +7,7 @@ import {filterTypes, actionFactory} from '../redux/actions.jsx';
 import {todoItemProtoTypesObj} from './todoItem.jsx';
 
 
-class Main extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -16,13 +16,13 @@ class Main extends React.Component {
         return (<div>
             <Header addTask={this.props.addTask}/>
             <TodoListMain todos={this.props.todos} filter={this.props.filter}/>
-            <Footer changeFilter={this.props.changeFilter} filter={this.props.filter} />
+            <Footer changeFilter={this.props.changeFilter} filter={this.props.filter}/>
         </div>);
     }
 }
 
 
-Main.propTypes = {
+App.propTypes = {
     todos: React.PropTypes.arrayOf(
         React.PropTypes.shape(todoItemProtoTypesObj)
     ),
@@ -33,12 +33,11 @@ Main.propTypes = {
     ]).isRequired
 };
 
-function mapStateToProps(state) {
-    return {
-        todos: state.todos,
-        filter: state.filter
-    }
-}
+
+const mapStateToProps = state => ({
+    todos: state.todos,
+    filter: state.filter
+});
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -47,4 +46,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
