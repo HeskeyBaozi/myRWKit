@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: './src/main.jsx'
+        app: './src/index.jsx'
     },
     output: {
         path: './dist',

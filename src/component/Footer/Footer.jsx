@@ -1,5 +1,5 @@
 import React from 'react';
-import {visibilityFilter} from '../../redux/action/index.jsx';
+import {filterTypes} from '../../redux/actions.jsx';
 
 class Footer extends React.Component {
     constructor(props) {
@@ -9,7 +9,7 @@ class Footer extends React.Component {
     handleClick(e) {
         e.preventDefault();
         console.log(this.props);
-        this.props.handler.changeFilter(e.target.id);
+        this.props.changeFilter(e.target.id);
     }
 
     render() {
@@ -18,17 +18,17 @@ class Footer extends React.Component {
                 <li >
                     <a href="#"
                        onClick={this.handleClick.bind(this)}
-                       id={visibilityFilter.SHOW_ALL}>All</a>
+                       id={filterTypes.SHOW_ALL}>All</a>
                 </li>
                 <li >
                     <a href="#"
                        onClick={this.handleClick.bind(this)}
-                       id={visibilityFilter.SHOW_ACTIVE}>Active</a>
+                       id={filterTypes.SHOW_ACTIVE}>Active</a>
                 </li>
                 <li >
                     <a href="#"
                        onClick={this.handleClick.bind(this)}
-                       id={visibilityFilter.SHOW_COMPLETED}>Completed</a>
+                       id={filterTypes.SHOW_COMPLETED}>Completed</a>
                 </li>
             </ul>
         </footer>);
