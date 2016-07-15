@@ -8,7 +8,8 @@ class Footer extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
-        this.props.changeFilter(e.target.id);
+        // this.props.changeFilter(e.target.id);
+        // fixme: BUG! 使用过滤器后, 完成任务无法准确对应
     }
 
     render() {

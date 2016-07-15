@@ -7,6 +7,7 @@ import {filterTypes, actionCreator} from '../redux/actions.jsx';
 import {todoItemProtoTypesObj} from './todoItem.jsx';
 
 
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -35,22 +36,11 @@ App.propTypes = {
     ]).isRequired
 };
 
-
-const selectTodos = (todosArray, filter) => {
-    switch (filter) {
-        case filterTypes.SHOW_ALL:
-            return todosArray;
-        case filterTypes.SHOW_ACTIVE:
-            return todosArray.filter((val) => !val.isCompleted);
-        case filterTypes.SHOW_COMPLETED:
-            return todosArray.filter((val) => val.isCompleted);
-    }
+const mapDispatchToPropsObj = {
+    addTask: actionCreator.addTodo,
+    changeFilter: actionCreator.setVisibilityFilter,
+    completeFactory: actionCreator.completeTodo
 };
-
-const mapStateToProps = (state, ownProps) => ({
-    todos: selectTodos(state.todos, state.filter),
-    filter: state.filter,
-});
 
 const mapDispatchToProps = (dispatch, ownPropsFromDispatch) => ({
     addTask: (newTodoItemObj) => dispatch(actionCreator.addTodo(newTodoItemObj)),
@@ -58,18 +48,13 @@ const mapDispatchToProps = (dispatch, ownPropsFromDispatch) => ({
     completeFactory: (newindex) => dispatch(actionCreator.completeTodo(newindex)),
 });
 
-const mapDispatchToPropsObj = {
-    addTask: actionCreator.addTodo,
-    changeFilter: actionCreator.setVisibilityFilter,
-    completeFactory: actionCreator.completeTodo
-};
-
 const mergeProps = (stateProps, dispatchProps, ownProps) =>
     Object.assign({}, ownProps, stateProps, dispatchProps);
 
 const options = {
     pure: true,
-    withRef: true
+    withRef: false
 };
 
-export default connect(mapStateToProps, mapDispatchToPropsObj)(App);
+import {mapStateToProps} from '../selectors/TodoSelectors.js'
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps, options)(App);

@@ -10,7 +10,7 @@ class TodoListMain extends React.Component {
     render() {
         let todosArray = this.props.todos.map((val, index, array) =>
             (<TodoItem todoItemObj={val}
-                       key={val.title}
+                       key={val.title + index}
                        index={index}
                        completeTask={this.props.completeFactory}/>));
         return (<main className="container">

@@ -2,6 +2,7 @@ import {combineReducers} from 'redux';
 import {actionTypes, filterTypes} from './actions.jsx';
 
 function todos(todosArrayState = [], action) {
+    console.log('action index = ', action);
     switch (action.type) {
         case actionTypes.ADD_TODO:
             return [...todosArrayState, action.todoItemObj];
