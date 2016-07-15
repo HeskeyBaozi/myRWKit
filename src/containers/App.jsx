@@ -16,8 +16,7 @@ class App extends React.Component {
         return (<div>
             <Header addTask={this.props.addTask}/>
             <TodoListMain completeFactory={this.props.completeFactory}
-                          todos={this.props.todos}
-                          filter={this.props.filter}/>
+                          todos={this.props.todos}/>
             <Footer changeFilter={this.props.changeFilter}
                     filter={this.props.filter}/>
         </div>);
@@ -36,14 +35,20 @@ App.propTypes = {
     ]).isRequired
 };
 
-/**
- *
- * @param state
- * @param ownProps <Connect(App) />的属性 映射到 包装的<App />
- * @return object stateProps
- */
+
+const selectTodos = (todosArray, filter) => {
+    switch (filter) {
+        case filterTypes.SHOW_ALL:
+            return todosArray;
+        case filterTypes.SHOW_ACTIVE:
+            return todosArray.filter((val) => !val.isCompleted);
+        case filterTypes.SHOW_COMPLETED:
+            return todosArray.filter((val) => val.isCompleted);
+    }
+};
+
 const mapStateToProps = (state, ownProps) => ({
-    todos: state.todos,
+    todos: selectTodos(state.todos, state.filter),
     filter: state.filter,
 });
 
@@ -67,4 +72,4 @@ const options = {
     withRef: true
 };
 
-export default connect(mapStateToProps, mapDispatchToPropsObj, mergeProps, options)(App);
+export default connect(mapStateToProps, mapDispatchToPropsObj)(App);

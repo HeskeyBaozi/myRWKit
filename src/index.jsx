@@ -29,8 +29,9 @@ setTimeout(() => {
                 return data;
             }).then((data) => {
                 for (let obj of data.todos) {
-                    store.dispatch(actionCreator.addTodo(obj));
+                    console.log('result=',store.dispatch(actionCreator.addTodo(obj)));
                 }
+                console.log('Json加载完成');
             });
         })
         .catch((error) => console.log('ERROR!!!!!', error));

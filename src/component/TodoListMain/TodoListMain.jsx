@@ -8,20 +8,9 @@ class TodoListMain extends React.Component {
     }
 
     render() {
-        let todosArray = this.props.todos.filter((val, index, array) => {
-            switch (this.props.filter) {
-                case filterTypes.SHOW_ALL:
-                    return true;
-                case filterTypes.SHOW_ACTIVE:
-                    return val.isCompleted ? false : true;
-                case filterTypes.SHOW_COMPLETED:
-                    return val.isCompleted ? true : false;
-                default:
-                    throw Error('No case');
-            }
-        }).map((val, index, array) =>
+        let todosArray = this.props.todos.map((val, index, array) =>
             (<TodoItem todoItemObj={val}
-                       key={index.toString() + 'hash'}
+                       key={val.title}
                        index={index}
                        completeTask={this.props.completeFactory}/>));
         return (<main className="container">
