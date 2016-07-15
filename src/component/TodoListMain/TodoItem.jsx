@@ -7,7 +7,7 @@ class TodoItem extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
-        this.props.completeTask();
+        this.props.completeTask(this.props.index);
     }
 
     render() {

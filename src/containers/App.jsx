@@ -3,7 +3,7 @@ import Header from '../component/Header/Header.jsx';
 import TodoListMain from '../component/TodoListMain/TodoListMain.jsx';
 import Footer from '../component/Footer/Footer.jsx';
 import {connect} from 'react-redux';
-import {filterTypes, actionFactory} from '../redux/actions.jsx';
+import {filterTypes, actionCreator} from '../redux/actions.jsx';
 import {todoItemProtoTypesObj} from './todoItem.jsx';
 
 
@@ -16,10 +16,10 @@ class App extends React.Component {
         return (<div>
             <Header addTask={this.props.addTask}/>
             <TodoListMain completeFactory={this.props.completeFactory}
-                todos={this.props.todos}
-                filter={this.props.filter}/>
+                          todos={this.props.todos}
+                          filter={this.props.filter}/>
             <Footer changeFilter={this.props.changeFilter}
-                filter={this.props.filter}/>
+                    filter={this.props.filter}/>
         </div>);
     }
 }
@@ -36,16 +36,35 @@ App.propTypes = {
     ]).isRequired
 };
 
-
-const mapStateToProps = (state) => ({
+/**
+ *
+ * @param state
+ * @param ownProps <Connect(App) />的属性 映射到 包装的<App />
+ * @return object stateProps
+ */
+const mapStateToProps = (state, ownProps) => ({
     todos: state.todos,
-    filter: state.filter
+    filter: state.filter,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    addTask: (newTodoItemObj) => dispatch(actionFactory.addTodo(newTodoItemObj)),
-    changeFilter: (newFilter) => dispatch(actionFactory.setVisibilityFilter(newFilter)),
-    completeFactory: (newindex) => () => dispatch(actionFactory.completeTodo(newindex))
+const mapDispatchToProps = (dispatch, ownPropsFromDispatch) => ({
+    addTask: (newTodoItemObj) => dispatch(actionCreator.addTodo(newTodoItemObj)),
+    changeFilter: (newFilter) => dispatch(actionCreator.setVisibilityFilter(newFilter)),
+    completeFactory: (newindex) => dispatch(actionCreator.completeTodo(newindex)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const mapDispatchToPropsObj = {
+    addTask: actionCreator.addTodo,
+    changeFilter: actionCreator.setVisibilityFilter,
+    completeFactory: actionCreator.completeTodo
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) =>
+    Object.assign({}, ownProps, stateProps, dispatchProps);
+
+const options = {
+    pure: true,
+    withRef: true
+};
+
+export default connect(mapStateToProps, mapDispatchToPropsObj, mergeProps, options)(App);

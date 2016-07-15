@@ -22,7 +22,8 @@ class TodoListMain extends React.Component {
         }).map((val, index, array) =>
             (<TodoItem todoItemObj={val}
                        key={index.toString() + 'hash'}
-                       completeTask={this.props.completeFactory(index).bind(this) }/>));
+                       index={index}
+                       completeTask={this.props.completeFactory}/>));
         return (<main className="container">
             {todosArray}
         </main>);
