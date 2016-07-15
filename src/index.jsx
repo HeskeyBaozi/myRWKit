@@ -5,11 +5,8 @@ import {Provider} from 'react-redux';
 import App from './containers/App.jsx';
 import {filterTypes} from './redux/actions.jsx';
 import todoApp from './redux/reducers.jsx';
-
-
-let store = createStore(todoApp);
-
 import {todoItem} from './containers/todoItem.jsx';
+
 let todoJson = {
     filter: filterTypes.SHOW_ALL,
     todos: [
@@ -19,6 +16,7 @@ let todoJson = {
     ]
 };
 
+let store = createStore(todoApp, todoJson);
 ReactDOM.render(
     <Provider store={store}>
         <App/>

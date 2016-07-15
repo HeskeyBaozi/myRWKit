@@ -20,7 +20,7 @@ export const filterTypes = {
 /**
  * action factory
  */
-export let actionFactory = {
+export const actionFactory = {
     addTodo(todoItemObj) {
         return {
             type: actionTypes.ADD_TODO,

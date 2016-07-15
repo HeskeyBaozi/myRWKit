@@ -5,15 +5,20 @@ class TodoItem extends React.Component {
         super(props);
     }
 
+    handleClick(e) {
+        e.preventDefault();
+        this.props.completeTask();
+    }
+
     render() {
-        return (<div className="flexBox">
-            <h3 className={this.props.todoItemObj.isCompleted ? 'text-success' : 'text-danger'}>
-                <strong>
-                    {this.props.todoItemObj.title} {this.props.todoItemObj.isCompleted ? 'Completed' : 'Active'}
-                </strong>
-            </h3>
+        return (<div className="bg-info">
+            <h3>{this.props.todoItemObj.title}</h3>
+            <h4 className={this.props.todoItemObj.isCompleted ? 'text-success' : 'text-danger'}><strong>
+                {this.props.todoItemObj.isCompleted ? 'Completed' : 'Active'}</strong>
+            </h4>
             <p>des: {this.props.todoItemObj.description}</p>
             <p>importance: {this.props.todoItemObj.importance}</p>
+            <p className="btn btn-primary" onClick={this.handleClick.bind(this)}>Completed!!!</p>
         </div>);
     }
 }

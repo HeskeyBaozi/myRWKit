@@ -15,8 +15,11 @@ class App extends React.Component {
     render() {
         return (<div>
             <Header addTask={this.props.addTask}/>
-            <TodoListMain todos={this.props.todos} filter={this.props.filter}/>
-            <Footer changeFilter={this.props.changeFilter} filter={this.props.filter}/>
+            <TodoListMain completeFactory={this.props.completeFactory}
+                todos={this.props.todos}
+                filter={this.props.filter}/>
+            <Footer changeFilter={this.props.changeFilter}
+                filter={this.props.filter}/>
         </div>);
     }
 }
@@ -34,16 +37,15 @@ App.propTypes = {
 };
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     todos: state.todos,
     filter: state.filter
 });
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addTask: (newTodoItemObj) => dispatch(actionFactory.addTodo(newTodoItemObj)),
-        changeFilter: (newFilter) => dispatch(actionFactory.setVisibilityFilter(newFilter))
-    };
-}
+const mapDispatchToProps = (dispatch) => ({
+    addTask: (newTodoItemObj) => dispatch(actionFactory.addTodo(newTodoItemObj)),
+    changeFilter: (newFilter) => dispatch(actionFactory.setVisibilityFilter(newFilter)),
+    completeFactory: (newindex) => () => dispatch(actionFactory.completeTodo(newindex))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

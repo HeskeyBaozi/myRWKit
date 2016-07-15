@@ -8,7 +8,7 @@ class TodoListMain extends React.Component {
     }
 
     render() {
-        let todoDataJSXArray = this.props.todos.filter((val, index, array) => {
+        let todosArray = this.props.todos.filter((val, index, array) => {
             switch (this.props.filter) {
                 case filterTypes.SHOW_ALL:
                     return true;
@@ -19,9 +19,12 @@ class TodoListMain extends React.Component {
                 default:
                     throw Error('No case');
             }
-        }).map((val, index, array) => <TodoItem todoItemObj={val} key={index.toString() + 'hash'}/>);
-        return (<main className="container flex-container">
-            {todoDataJSXArray}
+        }).map((val, index, array) =>
+            (<TodoItem todoItemObj={val}
+                       key={index.toString() + 'hash'}
+                       completeTask={this.props.completeFactory(index).bind(this) }/>));
+        return (<main className="container">
+            {todosArray}
         </main>);
     }
 }

@@ -41,24 +41,31 @@ class Header extends React.Component {
 
     render() {
         return (<div className="bg-success">
+            <div style={{
+                backgroundColor: 'black',
+                height: '2px'
+            }}></div>
             <header className="container">
-                <h1 className="text-primary text-center">ToDos</h1>
+                <h1 className="text-primary text-center"
+                    style={{
+                        margin: '100px auto'
+                    }}>ToDos</h1>
                 <form className="row" onSubmit={this.handleSubmit.bind(this) }>
                     <div className="col-sm-8 form-group">
                         <label className="sr-only" htmlFor="addTaskInput">
                             Add Task
                         </label>
                         <input type="text"
-                               id="addTaskInput"
-                               className="form-control"
-                               placeholder="What do you want to do?"
-                               value={this.state.title}
-                               onChange={this.handleChange.bind(this) }/>
+                            id="addTaskInput"
+                            className="form-control"
+                            placeholder="What do you want to do?"
+                            value={this.state.title}
+                            onChange={this.handleChange.bind(this) }/>
                     </div>
                     <div className="col-sm-2 form-group">
                         <select className="form-control"
-                                value={this.state.importance}
-                                onChange={this.handleChange.bind(this) }>
+                            value={this.state.importance}
+                            onChange={this.handleChange.bind(this) }>
                             <option value={3}>Very Important</option>
                             <option value={2}>Important</option>
                             <option value={1}>Normal</option>
@@ -67,8 +74,8 @@ class Header extends React.Component {
                     </div>
                     <div className="col-sm-2 form-group">
                         <input type="submit"
-                               value="Add"
-                               className="btn btn-block btn-md btn-default"/>
+                            value="Add"
+                            className="btn btn-block btn-md btn-default"/>
                     </div>
                 </form>
             </header>
